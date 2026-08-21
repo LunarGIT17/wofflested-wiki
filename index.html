@@ -14,14 +14,41 @@
     }
 
     body {
-      background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url('cathedral_alt.jpg');
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      font-family: 'Adobe Garamond Pro', 'Georgia', serif;
+      color: #E2E8F0;
+    }
+
+    .wall-border {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 130px;
+      background-repeat: repeat-y;
+      background-position: top center;
+      background-size: 190% auto;
+      pointer-events: none;
+      z-index: 10;
+      filter: drop-shadow(0 0 8px rgba(35, 96, 188, 0.7))
+              drop-shadow(0 0 18px rgba(197, 160, 89, 0.35));
+    }
+
+    .wall-border-left {
+      left: 0;
+      background-image: url('images/border-left.png');
+    }
+
+    .wall-border-right {
+      right: 0;
+      background-image: url('images/border-right.png');
     }
 
     .navbar {
@@ -34,6 +61,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .gothic-frame {
@@ -42,7 +72,7 @@
       justify-content: space-between;
       width: 100%;
       border: 2px solid #0E3D7F;
-      outline: 1px solid #C5A059; 
+      outline: 1px solid #C5A059;
       padding: 10px 25px;
       background: rgba(5, 15, 35, 0.4);
     }
@@ -50,25 +80,26 @@
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       text-decoration: none;
     }
 
     .logo {
-      color: #F4E8C1; 
+      color: #F4E8C1;
       font-family: "Bathory", serif;
       font-size: 42px;
       text-transform: uppercase;
       letter-spacing: 2px;
       text-shadow: 0 0 12px rgba(35, 96, 188, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9);
       text-decoration: none;
+      line-height: 1;
     }
 
     .logo-img {
-      height: 42px;
+      height: 65px;
       width: auto;
       display: block;
-      filter: drop-shadow(0 0 8px rgba(35, 96, 188, 0.8));
+      filter: drop-shadow(0 0 10px rgba(35, 96, 188, 0.9));
     }
 
     .nav-links {
@@ -111,10 +142,60 @@
     .navbar-text:hover::after {
       width: 100%;
     }
+
+    .main-content {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .intro-container {
+      background-color: rgba(0, 0, 0, 0.75);
+      border: 2px solid #0E3D7F;
+      outline: 1px solid #C5A059;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(35, 96, 188, 0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .intro-container h1 {
+      font-family: 'Adobe Garamond Pro', serif;
+      color: #F4E8C1;
+      font-size: 36px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(35, 96, 188, 0.8);
+      margin-top: 0;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #C5A059;
+      padding-bottom: 10px;
+    }
+
+    .intro-container h2 {
+      font-family: 'Bathory', serif;
+      color: #F4E8C1;
+      font-size: 26px;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 8px rgba(35, 96, 188, 0.6);
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    .intro-container p {
+      font-size: 19px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #E2E8F0;
+    }
   </style>
 </head>
 
 <body>
+  <div class="wall-border wall-border-left"></div>
+  <div class="wall-border wall-border-right"></div>
+
   <header class="navbar">
     <nav class="gothic-frame">
       <a href="#" class="logo-container">
@@ -130,5 +211,24 @@
       </ul>
     </nav>
   </header>
+
+  <main class="main-content">
+    <div class="intro-container">
+      <h1>Welcome to the Wofflested Encyclopedia!</h1>
+
+      <h2>What is Wofflested?</h2>
+      <p>Wofflested is a fictional country that I created in Regions of War III: Rekindled Flame. It is the only country I played as in the entire game, and perhaps the longest-lasting country that existed throughout the entire game, lasting entirely from the start till its end.</p>
+
+      <h2>Okay, but what is Wofflested, really?</h2>
+      <p>Wofflested, or the Empire of Wofflested, is a country located in the Central Continent of the planet Gaiaea. It was founded in 476 B.G.Y. (Before Gaiaean Year), as the Republic of Wofflested, when Gunwith of Ussos wrote the revolutionary novel "Malignant Curse of Humanity" and was later executed for his book. Alsacy of Ussos, his best friend, took up arms and launched the Wofflested Revolution, successfully overthrowing the oppressive monarchy. Alsacy was then elected the new Fyor-Cimmigt (Prime Minister) of the Republic of Wofflested.</p>
+
+      <p>Later on, during the Second Northern War between the Carmine Empire and the Kaeluman Empire, rebels led by the Monarchist Faction and their leader, Zarek I Sarancolus, sought to overthrow the last Fyor-Cimmigt of Wofflested, Icarus Orderiopoles, in 756 G.Y. due to his failure to hold the nation together during the war. With the Republic fallen, Zarek I Sarancolus was crowned Emperor, transforming Wofflested into its current state as the Empire of Wofflested.</p>
+
+      <h2>What is Wofflested like?</h2>
+      <p>As of the unofficial end of Regions of War III in the 1920s-era / 9th century G.Y., Wofflested was ruled by Emperor Zarek's eldest son and sucessor, Zaccharon I Sarancolus, a young and reformist Emperor who sought to grant more freedom to the citizenry and was a major progressivist during his rule.</p>
+
+      <p>Wofflested is dominated by the Allhavenic religion, which became highly popular in Wofflested around the 1st century G.Y., with the completion of the Holy Cathedral of the Blessed and Sanctified August Emperor St. Remus in 103 G.Y., the religious office of the Royal Archbishop of Resorgos and the biggest cathedral of the Eastern Continent. Allhaven was brought to Wofflested by Vulterran merchants from the early 1st century B.G.Y., where it gained limited traction and significant disliking from the locals, however, efforts to intellectualize and tone down the barbaric aspects of the religion by St. Anasoterios Valyptes were successful, resulting in the religion's popularity. By the 8th century G.Y., over 75% of Wofflestedians were recorded to have believed in Allhaven, the other 25% being the Wofflestedian traditional ritual practices and their many denominations.</p>
+    </div>
+  </main>
 </body>
 </html>
