@@ -30,7 +30,6 @@
       width: 100%;
       box-sizing: border-box;
       padding: 15px 30px;
-      border-bottom: 2px solid #C5A059; 
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
       display: flex;
       justify-content: space-between;
@@ -48,6 +47,13 @@
       background: rgba(5, 15, 35, 0.4);
     }
 
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
     .logo {
       color: #F4E8C1; 
       font-family: "Bathory", serif;
@@ -56,6 +62,13 @@
       letter-spacing: 2px;
       text-shadow: 0 0 12px rgba(35, 96, 188, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9);
       text-decoration: none;
+    }
+
+    .logo-img {
+      height: 42px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(35, 96, 188, 0.8));
     }
 
     .nav-links {
@@ -104,7 +117,10 @@
 <body>
   <header class="navbar">
     <nav class="gothic-frame">
-      <a href="#" class="logo">WOFFLESTED</a>
+      <a href="#" class="logo-container">
+        <span class="logo">WOFFLESTED</span>
+        <img src="favicon_io/android-chrome-512x512.png" alt="Wofflested Emblem" class="logo-img">
+      </a>
       <ul class="nav-links">
         <li><a href="#wars" class="navbar-text">Wars</a></li>
         <li><a href="#leaders" class="navbar-text">Leaders</a></li>
