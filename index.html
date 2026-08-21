@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOFFLESTED Wiki</title>
+
+  <style>
+    @font-face {
+      font-family: 'Bathory';
+      src: url('bathory/Bathory-Regular-Demo.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('cathedral_alt.jpg');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background: linear-gradient(180deg, rgba(14, 61, 127, 0.85) 0%, rgba(10, 30, 65, 0.95) 100%);
+      backdrop-filter: blur(8px);
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px 30px;
+      border-bottom: 2px solid #C5A059; 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .gothic-frame {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border: 2px solid #0E3D7F;
+      outline: 1px solid #C5A059; 
+      padding: 10px 25px;
+      background: rgba(5, 15, 35, 0.4);
+    }
+
+    .logo {
+      color: #F4E8C1; 
+      font-family: "Bathory", serif;
+      font-size: 42px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(35, 96, 188, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-text {
+      font-family: 'Adobe Garamond Pro', 'Georgia', serif;
+      color: #E2E8F0;
+      text-decoration: none;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .navbar-text:hover {
+      color: #F4E8C1;
+      text-shadow: 0 0 10px rgba(197, 160, 89, 0.8), 0 0 20px rgba(35, 96, 188, 0.6);
+    }
+
+    .navbar-text::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: #C5A059;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .navbar-text:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <nav class="gothic-frame">
+      <a href="#" class="logo">WOFFLESTED</a>
+      <ul class="nav-links">
+        <li><a href="#wars" class="navbar-text">Wars</a></li>
+        <li><a href="#leaders" class="navbar-text">Leaders</a></li>
+        <li><a href="#locations" class="navbar-text">Locations</a></li>
+        <li><a href="#events" class="navbar-text">Events</a></li>
+        <li><a href="#people" class="navbar-text">People</a></li>
+      </ul>
+    </nav>
+  </header>
+</body>
+</html>
