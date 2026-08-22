@@ -206,22 +206,32 @@
       overflow: hidden;
     }
 
-    /* 🏰 The tower wallpaper */
+    /* 🏰 Parallax tower wallpaper */
     .intro-container::before {
       content: "";
 
       position: absolute;
-      inset: 0;
+
+      /*
+      * Make the image layer slightly larger than
+      * the visible container so it has room to move.
+      */
+      top: -100px;
+      right: 0;
+      bottom: -100px;
+      left: 0;
 
       background-image: url('images/wallpaper-towers.png');
       background-size: cover;
-      background-position: center;
+      background-position: center var(--parallax-y, 50%);
       background-repeat: no-repeat;
 
       opacity: 0.25;
 
       pointer-events: none;
       z-index: 0;
+
+      will-change: background-position;
     }
 
     /* 📜 Keep all intro content above the wallpaper */
@@ -683,6 +693,54 @@
         modal.style.display = "none";
       }
     }
+
+    // 🏰 Intro container parallax effect
+    const introContainer = document.querySelector('.intro-container');
+
+    let parallaxTicking = false;
+
+    function updateIntroParallax() {
+      const rect = introContainer.getBoundingClientRect();
+
+      /*
+      * How far the intro container has moved
+      * relative to the viewport.
+      */
+      const movement = -rect.top;
+
+      /*
+      * PARALLAX SPEED
+      *
+      * Lower number = slower movement
+      * Higher number = faster movement
+      */
+      const parallaxSpeed = 0.45;
+
+      const parallaxOffset = movement * parallaxSpeed;
+
+      /*
+      * Move the background vertically while keeping
+      * its original horizontal center position.
+      */
+      introContainer.style.setProperty(
+        '--parallax-y',
+        `calc(50% + ${parallaxOffset}px)`
+      );
+
+      parallaxTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!parallaxTicking) {
+        requestAnimationFrame(updateIntroParallax);
+        parallaxTicking = true;
+      }
+    });
+
+    window.addEventListener('resize', updateIntroParallax);
+
+    /* Initialize the effect immediately */
+    updateIntroParallax();
   </script>
 </body>
 </html>
