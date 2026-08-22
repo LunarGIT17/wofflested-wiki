@@ -187,12 +187,47 @@
     }
 
     .intro-container {
+      position: relative;
+      isolation: isolate;
+
       background-color: rgba(0, 0, 0, 0.75);
+
       border: 2px solid #0E3D7F;
       outline: 1px solid #C5A059;
+
       padding: 40px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(35, 96, 188, 0.3);
+
+      box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.9),
+        0 0 15px rgba(35, 96, 188, 0.3);
+
       backdrop-filter: blur(4px);
+
+      overflow: hidden;
+    }
+
+    /* 🏰 The tower wallpaper */
+    .intro-container::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background-image: url('images/wallpaper-towers.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      opacity: 0.25;
+
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* 📜 Keep all intro content above the wallpaper */
+    .intro-container > * {
+      position: relative;
+      z-index: 1;
     }
 
     .intro-container h1 {
