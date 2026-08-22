@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon_io/android-chrome-512x512.png">
   <title>WOFFLESTED Wiki</title>
 
   <style>
@@ -25,10 +26,11 @@
       min-height: 100vh;
       font-family: 'Adobe Garamond Pro', 'Georgia', serif;
       color: #E2E8F0;
+      position: relative;
     }
 
     .wall-border {
-      position: fixed;
+      position: absolute;
       top: 0;
       bottom: 0;
       width: 135px;
@@ -52,7 +54,7 @@
     }
 
     .navbar {
-      background: linear-gradient(180deg, rgba(14, 61, 127, 0.85) 0%, rgba(10, 30, 65, 0.95) 100%);
+      background: linear-gradient(180deg, rgba(14, 61, 127, 0.95) 0%, rgba(10, 30, 65, 0.98) 100%);
       backdrop-filter: blur(8px);
       width: 100%;
       box-sizing: border-box;
@@ -66,11 +68,26 @@
       z-index: 1000;
     }
 
+    .navbar-arch-repeat {
+      width: 100%;
+      height: 100px;
+      background-image: url('images/jewelry arch.png');
+      background-repeat: repeat-x;
+      background-size: auto 100%;
+      background-position: top center;
+      filter: drop-shadow(0 1px 1px rgba(149, 189, 252, 0.7));
+      position: relative; 
+      z-index: 100; 
+      pointer-events: none;
+    }
+
+
+
     .gothic-frame {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
+      width: calc(100% - 60px);
       border: 2px solid #0E3D7F;
       outline: 1px solid #C5A059;
       padding: 10px 25px;
@@ -102,6 +119,20 @@
       filter: drop-shadow(0 0 10px rgba(35, 96, 188, 0.9));
     }
 
+    .logo-img:hover {
+      animation: logo-spin 0.5s ease-out;
+    }
+
+    @keyframes logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     .nav-links {
       display: flex;
       gap: 25px;
@@ -120,7 +151,11 @@
       transition: all 0.3s ease;
       position: relative;
       padding: 5px 0;
+      line-height: normal;
+      display: inline-block;
     }
+
+
 
     .navbar-text:hover {
       color: #F4E8C1;
@@ -145,7 +180,7 @@
 
     .main-content {
       max-width: 900px;
-      margin: 50px auto;
+      margin: 20px auto 50px auto;
       padding: 0 20px;
       position: relative;
       z-index: 20;
@@ -189,6 +224,312 @@
       margin-bottom: 20px;
       color: #E2E8F0;
     }
+
+    dfn {
+      color: inherit;
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-color: #8ED8FF;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      cursor: help;
+    }
+
+    .definition-tooltip {
+      position: fixed;
+      z-index: 2000;
+      max-width: 280px;
+      padding: 7px 10px;
+      background: rgba(5, 10, 20, 0.92);
+      border: 1px solid rgba(142, 216, 255, 0.25);
+      color: #FFFFFF;
+      font-family: 'Adobe Garamond Pro', 'Georgia', serif;
+      font-size: 14px;
+      line-height: 1.4;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(12px, 12px);
+      transition: opacity 0.12s ease;
+      text-shadow: 0 0 4px rgba(255, 255, 255, 0.18);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+    }
+
+    .definition-tooltip.visible {
+      opacity: 1;
+    }
+
+    .footer {
+      background: linear-gradient(180deg, rgba(14, 61, 127, 0.85) 0%, rgba(10, 30, 65, 0.95) 100%);
+      backdrop-filter: blur(8px);
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .footer-arch-repeat {
+      width: 100%;
+      height: 60px;
+      background-image: url('images/wide_arch.png');
+      background-repeat: repeat-x;
+      background-size: auto 100%;
+      background-position: top center;
+      filter: drop-shadow(0 1px 1px rgba(149, 189, 252, 0.7));
+
+      /* KEY CHANGES */
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      z-index: 5000;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .footer-cathedral {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 150px;
+      overflow: hidden;
+    }
+
+    /* Repeating cathedral layer */
+    .cathedral-repeat {
+      position: absolute;
+      inset: 0;
+
+      background-image: url('images/cathedral.png');
+      background-repeat: repeat-x;
+      background-position: center center;
+      background-size: auto 150px;
+
+      opacity: 0.25;
+
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Text sits ABOVE all of the cathedrals */
+    .footer-cathedral p {
+      position: relative;
+      z-index: 90000;
+
+      margin: 0;
+      text-align: center;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 3000; /* Raised above navbar z-index (1000) */
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Modal Content */
+    .modal-content {
+      position: relative;
+
+      /* ONE continuous brick wall */
+      background-image: url('images/brick walls.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat-y;
+
+      color: #E2E8F0;
+
+      margin: auto;
+      padding: 0;
+
+      border: 2px solid rgba(142, 216, 255, 0.8);
+
+      width: 80%;
+      max-width: 600px;
+
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+
+      animation-name: animatetop;
+      animation-duration: 0.4s;
+
+      /* Important: keeps sections inside the modal border */
+      overflow: hidden;
+    }
+
+    .modal-content::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+      z-index: 49;
+
+      /* The water texture */
+      background-image: url('images/water test.png');
+
+      /*
+      * Make the texture large enough that its movement
+      * is actually visible.
+      */
+      background-size: auto 400px;
+      background-repeat: repeat;
+
+      /* Start at the top */
+      background-position: center 0;
+
+      /*
+      * Move the water upward continuously.
+      */
+      animation: waterFlow 4s linear infinite;
+
+      /*
+      * Make the water blue/translucent.
+      */
+      opacity: 0.45;
+
+      /*
+      * Turn the entire pseudo-element into a border.
+      */
+      padding: 10px;
+
+      -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+
+      -webkit-mask-composite: xor;
+
+      mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+
+      mask-composite: exclude;
+    }
+
+    .modal-content::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+      z-index: 50;
+
+      border: 2px solid rgba(220, 250, 255, 0.75);
+
+      box-shadow:
+          inset 0 0 8px rgba(142, 216, 255, 0.8),
+          inset 0 0 20px rgba(35, 96, 188, 0.45),
+          0 0 10px rgba(142, 216, 255, 0.5);
+    }
+
+    @keyframes waterFlow {
+      from {
+          background-position: center 0;
+      }
+
+      to {
+          background-position: center -400px;
+      }
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0} 
+      to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+
+    /* The Close Button */
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+      position: relative;
+      z-index: 60;
+      box-sizing: border-box;
+
+      border-left: 2px solid rgba(142, 216, 255, 0.8);
+      border-right: 2px solid rgba(142, 216, 255, 0.8);
+    }
+
+    .modal-header {
+      padding: 2px 16px;
+
+      background-color: rgba(14, 61, 127, 0.70);
+
+      color: white;
+      text-align: center;
+    }
+
+    .modal-header h1 {
+      color: #F4E8C1;
+      font-family: "Adobe Garamond Pro", serif;
+      font-size: 42px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(35, 96, 188, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 2px 16px;
+
+      background-color: rgba(15, 23, 42, 0.78);
+
+      color: #E2E8F0;
+    }
+
+    .modal-footer {
+      padding: 2px 16px;
+
+      background-color: rgba(14, 61, 127, 0.70);
+
+      color: white;
+    }
+
+
+    button.navbar-text {
+      background: none;
+      border: none;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      text-align: center;
+    }
+    
   </style>
 </head>
 
@@ -203,14 +544,36 @@
         <img src="favicon_io/android-chrome-512x512.png" alt="Wofflested Emblem" class="logo-img">
       </a>
       <ul class="nav-links">
-        <li><a href="#wars" class="navbar-text">Wars</a></li>
-        <li><a href="#leaders" class="navbar-text">Leaders</a></li>
-        <li><a href="#locations" class="navbar-text">Locations</a></li>
-        <li><a href="#events" class="navbar-text">Events</a></li>
-        <li><a href="#people" class="navbar-text">People</a></li>
+        <li><button class="modal-button navbar-text">Wars</button></li>
+        <li><a href="" class="navbar-text">Leaders</a></li>
+        <li><a href="" class="navbar-text">Locations</a></li>
+        <li><a href="" class="navbar-text">Events</a></li>
+        <li><a href="" class="navbar-text">People</a></li>
       </ul>
     </nav>
   </header>
+
+  <div class="navbar-arch-repeat"></div>
+
+
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h1>The Wars Wofflested Was Involved In</h1>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the Modal Body</p>
+        <p>Some other text...</p>
+      </div>
+      <div class="modal-footer">
+        <h3>Modal Footer</h3>
+      </div>
+    </div>
+  </div>
+   
+  
 
   <main class="main-content">
     <div class="intro-container">
@@ -220,9 +583,9 @@
       <p>Wofflested is a fictional country that I created in Regions of War III: Rekindled Flame. It is the only country I played as in the entire game, and perhaps the longest-lasting country that existed throughout the entire game, lasting entirely from the start till its end.</p>
 
       <h2>Okay, but what is Wofflested, really?</h2>
-      <p>Wofflested, or the Empire of Wofflested, is a country located in the Central Continent of the planet Gaiaea. It was founded in 476 B.G.Y. (Before Gaiaean Year), as the Republic of Wofflested, when Gunwith of Ussos wrote the revolutionary novel "Malignant Curse of Humanity" and was later executed for his book. Alsacy of Ussos, his best friend, took up arms and launched the Wofflested Revolution, successfully overthrowing the oppressive monarchy. Alsacy was then elected the new Fyor-Cimmigt (Prime Minister) of the Republic of Wofflested.</p>
+      <p>Wofflested, or the Empire of Wofflested, is a country located in the Central Continent of the planet Gaiaea. It was founded in 476 <dfn data-definition="Before Gaiaean Year">B.G.Y.</dfn>, as the Republic of Wofflested, when Gunwith of Ussos wrote the revolutionary novel "Malignant Curse of Humanity" and was later executed for his book. Alsacy of Ussos, his best friend, took up arms and launched the Wofflested Revolution, successfully overthrowing the oppressive monarchy. Alsacy was then elected the new Fyor-Cimmigt (Prime Minister) of the Republic of Wofflested.</p>
 
-      <p>Later on, during the Second Northern War between the Carmine Empire and the Kaeluman Empire, rebels led by the Monarchist Faction and their leader, Zarek I Sarancolus, sought to overthrow the last Fyor-Cimmigt of Wofflested, Icarus Orderiopoles, in 756 G.Y. due to his failure to hold the nation together during the war. With the Republic fallen, Zarek I Sarancolus was crowned Emperor, transforming Wofflested into its current state as the Empire of Wofflested.</p>
+      <p>Later on, during the Second Northern War between the Carmine Empire and the Kaeluman Empire, rebels led by the Monarchist Faction and their leader, Zarek I Sarancolus, sought to overthrow the last Fyor-Cimmigt of Wofflested, Icarus Orderiopoles, in 756 <dfn data-definition="Gaiaean Year">G.Y.</dfn> due to his failure to hold the nation together during the war. With the Republic fallen, Zarek I Sarancolus was crowned Emperor, transforming Wofflested into its current state as the Empire of Wofflested.</p>
 
       <h2>What is Wofflested like?</h2>
       <p>As of the unofficial end of Regions of War III in the 1920s-era / 9th century G.Y., Wofflested was ruled by Emperor Zarek's eldest son and sucessor, Zaccharon I Sarancolus, a young and reformist Emperor who sought to grant more freedom to the citizenry and was a major progressivist during his rule.</p>
@@ -230,5 +593,61 @@
       <p>Wofflested is dominated by the Allhavenic religion, which became highly popular in Wofflested around the 1st century G.Y., with the completion of the Holy Cathedral of the Blessed and Sanctified August Emperor St. Remus in 103 G.Y., the religious office of the Royal Archbishop of Resorgos and the biggest cathedral of the Eastern Continent. Allhaven was brought to Wofflested by Vulterran merchants from the early 1st century B.G.Y., where it gained limited traction and significant disliking from the locals, however, efforts to intellectualize and tone down the barbaric aspects of the religion by St. Anasoterios Valyptes were successful, resulting in the religion's popularity. By the 8th century G.Y., over 75% of Wofflestedians were recorded to have believed in Allhaven, the other 25% being the Wofflestedian traditional ritual practices and their many denominations.</p>
     </div>
   </main>
+
+  <footer class="footer">
+    <div class="footer-arch-repeat"></div>
+    <div class="footer-cathedral">
+      <div class="cathedral-repeat"></div>
+      <p>This nation was built with love from <b>LunarGit17</b></p>
+    </div>
+  </footer>
+
+  <script>
+    const tooltip = document.createElement('div');
+    tooltip.className = 'definition-tooltip';
+    document.body.appendChild(tooltip);
+
+    document.querySelectorAll('dfn').forEach(dfn => {
+      dfn.addEventListener('mouseenter', () => {
+        tooltip.textContent = dfn.getAttribute('title') || dfn.dataset.definition || '';
+        tooltip.classList.add('visible');
+      });
+
+      dfn.addEventListener('mousemove', event => {
+        tooltip.style.left = `${event.clientX}px`;
+        tooltip.style.top = `${event.clientY}px`;
+      });
+
+      dfn.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('visible');
+      });
+    });
+
+    // Get the modal
+    const modal = document.getElementById("myModal");
+
+    // Select the single button element properly
+    const btn = document.querySelector(".modal-button");
+
+    // Get the <span> element that closes the modal
+    const span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
